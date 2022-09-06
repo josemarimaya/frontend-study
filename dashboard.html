@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-vue2"></script>
+        <script src="https://unpkg.com/vue-select@latest"></script>
+    
+    <link rel="stylesheet" href="dash.css">
+    <title>Estudio js</title>
+    <link rel = "icon" href = 
+    "https://pbs.twimg.com/profile_images/1088187341750132742/0HMWk5Mx_400x400.jpg" 
+        type = "image/x-icon">
+</head>
+<body style="background-image: url(background.jpg);">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Pruebita</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="graphs.html">Grafiquiños</a>
+            <a class="nav-item nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-item nav-link" href="vueTab.html">Vuelando</a>
+            <a class="nav-item nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-item nav-link" href="decisionTree.html">Arbolillo</a>
+          </div>
+        </div>
+    </nav>
+
+    <form action="" method="get" id="formSearch">
+      <div class="card">
+        <div class="card-header headerSearch">
+          Búsqueda
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="card-body">
+          <div class="row" id="rowSearch">
+            <div class="col lg-4 md-4">
+              <div class="form-group">
+                <label for="client">ID del cliente</label>
+                <input name="client" class="form-control" type="text" placeholder="Inserte el id del cliente">
+              </div>
+            </div>
+
+            <div class="col lg-4 md-4">
+              <div class="form-group">
+                <label for="deco">Nº serie deco</label>
+                <input name="deco" type="text" class="form-control" placeholder="Inserte número de serie del deco">
+              </div>
+            </div>
+
+            <div class="col lg-4 md-4">
+              <div class="form-group">
+                <label for="installation"> Orden de instalación</label>
+                <input name="installation" type="text" class="form-control" placeholder="Número de orden de la instalación">
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="row" id="rowButtons">
+            <div class="text-center mr-3">
+              <button class="btn btn-info" type="submit">Filtrar</button>
+            </div>
+
+            <div class="text-center">
+              <button @click="borrado()" class="btn btn-danger" type="reset">Descartar filtros</button>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </form>
+    
+    
+    <div class="row" id="infoCards">
+      <div class="col lg-4 md-4">
+        <div class="card">
+          <div class="card-header" style="background-color: #149fba;">
+            <i class="fas fa-box"></i>
+            Envíos de decos
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <div class="card-header">
+                <div class="dropdown float-right">
+                  <button class="btn btn-secondary  btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Acciones
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Instalación completa</a>
+                    <a class="dropdown-item" href="#">Instalación pendiente</a>
+                    <a class="dropdown-item" href="#">Deco enviado</a>
+                  </div>
+                </div>
+
+                <span class="badge badge-success" style="background-color: #c922ae;">
+                  CAU
+                </span>
+                <span class="badge badge-secondary ml-1">
+                  #1616
+                </span>
+
+              </div>
+
+              <div class="card-body">
+                <p>
+                  <small> <strong>Cliente: </strong>#1646 </small>
+                  <small style="float: right;"> Fecha de instalación: 25/01/2022</small>
+                  
+                  <br>
+
+                  <small> Nombre del cliente: Nosecuantos</small>
+                  <small style="float: right;">Dirección: calle callejuela</small>
+                  <br>
+                  
+                  <small>Empresa instaladora: SSI</small>
+                  <small style="float: right;">Instalador: Pedro García</small>
+                </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col lg-4 md-4">
+        <div class="card">
+          <div class="card-header" style="background-color: #e3c152;">
+            <i class="fas fa-exclamation-triangle"></i>
+            Instalaciones pendientes
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <div class="card-header">
+                <span class="badge badge-success" style="background-color: #232829;">
+                  ONIVIA
+                </span>
+                <span class="badge badge-secondary ml-1">
+                  #21665
+                </span>
+
+                <button @click="instalacion_completada()" class="btn btn-success btn-sm float-right" type="submit"> Instalación completa</button>
+              </div>
+              <div class="card-body">
+                <p>
+                  <small> <strong>Cliente: </strong>#1815115 </small>
+                  <small style="float: right;"> Fecha de instalación: 18/02/2022</small>
+                  
+                  <br>
+
+                  <small> Nombre del cliente: Nosequé</small>
+                  <small style="float: right;">Dirección: calle calle</small>
+                  <br>
+
+                  <small>Empresa instaladora: Magtel Operaciones</small>
+                  <small style="float: right;">Instalador: Pepito Perez</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col lg-4 md-4">
+        <div class="card">
+          <div class="card-header" style="background-color: #44b812;">
+            <i class="fas fa-check-circle"></i>
+            Instalaciones completadas
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <div class="card-header">
+                <span class="badge badge-success" style="background-color: #0ae4f7;">
+                  MCA
+                </span>
+                <span class="badge badge-secondary ml-1">
+                  #164861
+                </span>
+              </div>
+              <div class="card-body">
+                <p>
+                  <small> <strong>Cliente: </strong>#5518 </small>
+                  <small style="float: right;"> Fecha de instalación: 28/12/2022</small>
+                  
+                  <br>
+
+                  <small> Nombre del cliente: Paco Pepe</small>
+                  <small style="float: right;">Dirección: calle callejon</small>
+                  <br>
+                  
+                  <small>Empresa instaladora: TECNIRAYMA</small>
+                  <small style="float: right;">Instalador: Antonio Antóñez</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <div class="row">
+      <div class="col lg-12">
+        <div class="card">
+          <div class="card-body"></div>
+        </div>
+      </div>
+     
+    </div>
+      
+   
+
+
+    <script>
+
+      const formulario = Vue.createApp({
+        methods: {
+          borrado(){
+            alert('¿Seguro que quieres borrar los filtros?');
+          }
+          
+        }
+      });
+
+      const info = Vue.createApp({
+        methods: {
+          instalacion_completada(){
+            alert('¿Seguro que se ha completado la instalación?');
+          }
+        }
+      });
+      formulario.mount('#formSearch');
+      info.mount('#infoCards');
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-vue2"></script>
+    <script src="https://unpkg.com/vue-select@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+    <title>Estudio js</title>
+    <link rel = "icon" href = 
+    "https://pbs.twimg.com/profile_images/1088187341750132742/0HMWk5Mx_400x400.jpg" 
+        type = "image/x-icon">
+</head>
+<body style="background-image: url(background.jpg);">
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Pruebita</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="graphs.html">Grafiquiños</a>
+            <a class="nav-item nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-item nav-link" href="vueTab.html">Vuelando</a>
+            <a class="nav-item nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-item nav-link" href="decisionTree.html">Arbolillo</a>
+            <a class="nav-item nav-link" href="cdrs.html">CDR Controller</a>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mt-3" id="app">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group text-center">
+                            <label for="">Tipo de incidencia</label>
+                            <vue-select
+                            v-model="troubleShootingId"
+                            :options="incidenceList"
+                            :reduce="inc => inc.id"
+                            id="id"
+                            label="opcion"
+                            />
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Incidencia de fibra -->
+
+                <div v-if="(troubleShootingId == 1)" class="mt-2">
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="form-group text-center">
+                                <label for="">¿Hay LOS ROJO?
+                                    <input v-model="check.los" type="checkbox">
+                                </label>
+                            </div>   
+                        </div> 
+                    </div>
+
+                    <div v-if="(check.los)" class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for=""> Solución: envío de técnico al cliente</label>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for=""> Notas de servicio al cliente</label>
+                                <textarea name="incidenceDescription" class="form-control" placeholder="Da una descripción de lo sucedido"></textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div v-if="!(check.los)" class="mt-2">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group text-center">
+                                    <label for="">Tipo de incidencia de fibra</label>
+                                    <vue-select
+                                    v-model="typeIncidenceFiberId"
+                                    :options="typeIncidence.fiber"
+                                    :reduce="fib => fib.id"
+                                    id="id"
+                                    label="type"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div v-if="(typeIncidenceFiberId == 4 || typeIncidenceFiberId == 5)" class="mt-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="" method="post">
+                                        <!-- Hacer con lodash -->
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Lentitud
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-2 col-md-2">
+                                                        Motivo de la avería: 
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10">
+                                                        <input name="motive" type="text" class="form-control" placeholder="Motivo de la avería">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-2 col-md-2">
+                                                        Pruebas realizadas: 
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10">
+                                                        <textarea name="" class="form-control" placeholder="Pruebas realizadas"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-3 text-center">
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" class="text-center" name="" id="">
+                                                            <span class="d-block">POWER</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id=""/>
+                                                            <span class="d-block">PON</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">LOS</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">LAN1</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">LAN2</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">LAN3</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">LAN4</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">TEL1</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">TEL2</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">USB</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">WLAN</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="">
+                                                            <input type="checkbox" name="" id="">
+                                                            <span class="d-block">WPS</span>
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-inline">
+                                                            <div class="form-group">
+                                                                <label for="">¿Desde cuándo le ocurre?
+                                                                      
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input type="date" class="form-control" name="" id="" style="margin-left: 2em;">  
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-inline">
+                                                            <div class="form-group">
+                                                                <label for="">¿Se ha realizado reset de fábrica?</label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="checkbox"  name="" id="" style="margin-left: 2em;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-inline">
+                                                            <div class="form-group">
+                                                                <label for="">¿Le ocurre en todos los dispositivos?
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input type="checkbox"  name="" id="" style="margin-left: 2em;">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-8 col-md-8">
+                                                        ¿En que puerto o puertos está conectado el dispositivo en el que nota la lentitud por cable?
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <vue-select
+                                                        v-model="typePort"
+                                                        :options="sources.ports"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-3 col-md-3">
+                                                        ¿De qué dispositivo se trata?
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-9">
+                                                        <!-- Hacer un select con tipos de dispositivos a lo mejor -->
+                                                        <vue-select
+                                                        :options="sources.devices"
+                                                        :multiple="true"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-3">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="form-inline">
+                                                            <div class="form-group">
+                                                                <label for="">¿Le ocurre en algún momento determinado del día?</label>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input type="time" class="form-control" name="" id="" style="margin-left: 2em;">
+                                                            </div>
+                                                        </div>      
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-lg-2 col-md-2">
+                                                        Observaciones:
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10">
+                                                        <ckeditor :editor="editor.type"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+
+
+                    <div class="text-center mt-2">
+                        <button type="button" class="btn btn-success mx-auto"> Enviar incidencia
+                            <i class="fas fa-file-import"></i>
+                        </button>
+                    </div>
+                    
+                            
+                </div>
+
+                <!-- Decisiones para móvil -->
+
+                <div v-if="(troubleShootingId == 2)" class="row mt-2">
+                    <div class="col-lg-6">
+
+                    </div>
+                </div>
+
+                <!-- Decisiones para incidencias en TV -->
+
+                <div v-if="(troubleShootingId == 3)" class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="form-group text-center">
+                            <label for="">Tipo de incidencia de televisión</label>
+                            <vue-select
+                                v-model="typeIncidenceTVID"
+                                :options="typeIncidence.tv"
+                                :reduce="tvup => tvup.id"
+                                id="id"
+                                label="type"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Incidencia TV tipo 1-->
+                <div v-if="(typeIncidenceTVID == 1)" class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="form-group text-center">
+                            <label for=""> ¿Tiene actualizado el TVUP? </label>
+                            <vue-select
+                            v-model="update"
+                            :options="sources.decoUpdated"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        
+                    </div>
+
+                </div>
+
+                <div v-if="(update == 'Sí')" class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="form-group text-center">
+                            <label for=""> ¿Tiene algún puerto desconectado? </label>
+                            <vue-select
+                            v-model="connected"
+                            :options="sources.portsConnected"
+                            :reduce="port => port.id"
+                            id="id"
+                            label="port"
+                            />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div v-else-if="(update == 'No')" class="row-mt-2">
+                    <div class="col-lg-12">
+                        <div class="form-group text-center">
+                            <label for=""> Que actualice el sistema usando el manual del deco </label>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+       Vue.component("vue-select", VueSelect.VueSelect);
+       Vue.use( CKEditor );
+
+       var troubleShooting = [{
+           id: "1",
+           opcion: "Incidencia fibra"
+       },
+       {
+            id: "2",
+           opcion: "Incidencia móvil"
+       },
+       {
+            id: "3",
+           opcion: "Incidencia deco"
+       }
+    
+        ];
+
+
+       var fiberIncidence = [
+           {
+            id: "1",
+            type: "Cliente sin servicio total"
+           },
+           {
+            id: "2",
+            type: "Cliente sin servicio por cable"
+           },
+           {
+            id: "3",
+            type: "Cliente sin servicio por wifi"
+           },
+           {
+            id: "4",
+            type: "Cliente con lentitud total"
+           },
+           {
+            id: "5",
+            type: "Cliente con lentitud por cable"
+           },
+           {
+            id: "6",
+            type: "Cliente con lentitud por wifi"
+           }
+           
+       ];
+
+       var mobileIncidence = [
+            {
+            id: "1",
+            type: "Cliente no emite ni recibe por teléfono fijo"
+           },
+           {
+            id: "2",
+            type: "Cliente no emite"
+           },
+           {
+            id: "3",
+            type: "Cliente no recibe"
+           }
+       ];
+
+       var tvIncidence = [
+        {
+            id: "1",
+            type: "No deja acceder al cliente al servicio de TVUP o el deco no tiene conexión"
+        },
+        {
+            id: "2",
+            type: "Versión de Android no válida"
+        },
+        {
+            id: "3",
+            type: "TVUP no enciende"
+        }
+
+       ];
+
+       var puertos = ['WAN', 'LAN1', 'LAN2', 'LAN3', 'LAN4'];
+
+       var devices = ['Móvil', 'Portátil', 'Sobremesa', 'Otro'];
+
+       var tvports = [
+           {
+            id: "1",
+            port: 'Alimentación'
+           },
+           {
+            id: "2",
+            port: 'HDMI'
+           } ,
+           {
+            id: "3",
+            port: 'LAN'
+           } ,
+           {
+            id: "4",
+            port: 'No'
+           } 
+        ];
+
+       var bool = ["Sí", "No"];
+
+       var app = new Vue({
+            el: "#app",
+            data: {
+                editor: {
+                    type: ClassicEditor
+                },
+
+                troubleShootingId: '1',
+                incidenceList: troubleShooting,
+                typeIncidenceFiberId: '4',
+                typeIncidenceTVID: null,
+                typeIncidence: {
+                    fiber: fiberIncidence,
+                    mobile: mobileIncidence,
+                    tv: tvIncidence
+                },
+                typePort: null,
+                update: null,
+                connected: null,  
+                sources: {
+                    ports: puertos,
+                    devices: devices,
+                    portsConnected: tvports,
+                    decoUpdated: bool
+                },
+                check: {
+                    los: false
+                }
+            }
+       });
+    </script>
+    
+</body>
+</html>

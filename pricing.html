@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/vue@3"></script>
+        <title>Estudio js</title>
+        <link rel = "icon" href = 
+        "https://pbs.twimg.com/profile_images/1088187341750132742/0HMWk5Mx_400x400.jpg" 
+            type = "image/x-icon">
+</head>
+<body style="background-image: url(background.jpg);">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">Pruebita</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="graphs.html">Grafiquiños</a>
+        <a class="nav-item nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-item nav-link" href="vueTab.html">Vuelando</a>
+        <a class="nav-item nav-link" href="pricing.html">Pricing</a>
+        <a class="nav-item nav-link" href="decisionTree.html">Arbolillo</a>
+        <a class="nav-item nav-link" href="cdrs.html">CDR Controller</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="form mt-1" id="pricingForm">
+    <div class="card">
+      <div class="card-header">
+        Dinerito <i class="fas fa-money-bill-wave"></i>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col lg-3 md-3">
+            <div class="form-group">
+              <label for="">Dinerito dinerito</label>
+              <input v-model="price" @keyup="numberFormat('price')" type="text" class="form-control input-only-numbers">
+            </div>
+          </div>
+          <div class="col lg-3 md-3">
+            <div class="form-group">
+              <label for="">IVA y esas cosas</label>
+              <h2 id="preview-iva" class="euro p-0 m-0">{{ iva }}</h2> <small>IVA incluido</small>
+            </div>
+          </div>
+          <div class="col lg-3 md-3">
+            <div class="form-group">
+              <label for="">IGIC ¿supongo?</label>
+              <h2 id="preview-igic" class="euro p-0 m-0">{{ igic }}</h2> <small>IGIC incluido</small>
+            </div>
+          </div>
+          <div class="col lg-3 md-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    const dinerito = Vue.createApp({
+      data (){
+        return {
+          price: 0
+        };
+      },
+      computed: {
+        iva(){
+          var price = parseFloat(this.price);
+          return (price + price*(21/100)).toFixed(2) + '€';
+        },
+        igic(){
+          var price = parseFloat(this.price);
+          return (price + price*(7/100)).toFixed(2) + '€';
+        }
+
+      }, 
+      methods: {
+        numberFormat(value){
+          this[value] = this[value].replace(/[^0-9\.]/g,'');
+        }
+      }
+    });
+
+    dinerito.mount('#pricingForm');
+
+
+    
+  </script>
+    
+</body>
+</html>

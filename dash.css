@@ -1,0 +1,14 @@
+.card{
+    margin-top: 5px;
+}
+
+.headerSearch{
+    background-color: antiquewhite;
+}
+
+#rowButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

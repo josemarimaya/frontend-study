@@ -1,0 +1,19 @@
+#contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#msg{
+    text-align: center;
+}
+#divSubmit{
+    margin-top: 5px;
+    text-align: center;
+}
+
+#divBtn{
+    margin-top: 5px;
+    text-align: center;
+}

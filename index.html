@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style></style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Estudio js</title>
+    <link rel = "icon" href = 
+    "https://pbs.twimg.com/profile_images/1088187341750132742/0HMWk5Mx_400x400.jpg" 
+        type = "image/x-icon">
+</head>
+<body style="background-image: url(background.jpg);">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Pruebita</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="graphs.html">Grafiquiños</a>
+            <a class="nav-item nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-item nav-link" href="vueTab.html">Vuelando</a>
+            <a class="nav-item nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-item nav-link" href="decisionTree.html">Arbolillo</a>
+            <a class="nav-item nav-link" href="cdrs.html">CDR Controller</a>
+          </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-2">
+        <div class="card" style=" background-color: lightcoral;">
+            <div class="card-body">
+                <div id="hi" style="text-align: center;">
+                    <label for=""></label>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-1">
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                      <label for="inputName" class="form-label">Nombre</label>
+                      <input class="form-control" id="inputName" placeholder="Inserte su nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputSurname" class="form-label" >Apellidos</label>
+                        <input type="text" id="inputSurname" class="form-control" placeholder="Inserte su apellido">
+                      </div>
+                    <div class="mb-3">
+                      <label for="inputPassword" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="inputPassword" placeholder="Inserte su contraseña">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputBirthDate" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="inputBirthDate">
+                    </div>
+                    <div class="text-center">
+                        <button id='submitButton'type="submit" class="btn btn-success text-center">Guardar datos</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        var saludoTarde = "Buenas tardes";
+        var saludoMañana = "Buenos días";
+        var saludoNoche = "Buenas noches";
+        var array = [0,false,15.3, "hola"];
+        
+
+        console.log(array);
+        array.forEach(function($el){
+            if(typeof $el === typeof Boolean) console.log($el);
+
+        });
+
+        function saludo(){
+            var ahora = new Date;
+            var tiempo = ahora.getHours();
+
+            var saludo = "";
+            if(tiempo < 12)
+                saludo = saludoMañana;
+                //console.log(saludoMañana);
+            else if(tiempo >= 12 && tiempo < 18)
+                saludo = saludoTarde;
+            else
+                saludo = saludoNoche;
+            return saludo;
+        }
+       
+
+        $(document).ready(function(){
+        
+            console.log(saludo());
+            $('#hi').html(saludo());
+            var dataJSON = JSON.parse(localStorage.getItem('DATA-JOSE'));
+            if(dataJSON){
+                //$("#inputName").val(dataJSON.name);
+                //$("#inputSurname").val(dataJSON.surname);
+                //$("#inputPassword").val(dataJSON.password);
+                //$("#inputBirthDate").val(dataJSON.date);
+            }
+            else {
+                dataJSON = [];
+                localStorage.setItem('DATA-JOSE', JSON.stringify(dataJSON));
+            }
+                
+
+
+            $('#submitButton').click(function () {
+
+                var myJson = {
+                    name: $("#inputName").val(),
+                    surname: $("#inputSurname").val(),
+                    password: $("#inputPassword").val(),
+                    date: $("#inputBirthDate").val()
+                };
+                dataJSON.push(myJson);
+                localStorage.setItem('DATA-JOSE', JSON.stringify(dataJSON));
+            })
+
+           
+        });
+        
+
+    </script>
+</body>
+</html>

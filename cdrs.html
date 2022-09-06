@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css" integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <title>Estudio js</title>
+        <link rel = "icon" href = 
+        "https://pbs.twimg.com/profile_images/1088187341750132742/0HMWk5Mx_400x400.jpg" 
+            type = "image/x-icon">
+</head>
+
+<body style="background-image: url(background.jpg);">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Pruebita</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="graphs.html">Grafiquiños</a>
+            <a class="nav-item nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-item nav-link" href="vueTab.html">Vuelando</a>
+            <a class="nav-item nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-item nav-link" href="decisionTree.html">Arbolillo</a>
+            <a class="nav-item nav-link" href="cdrs.html">CDR Controller</a>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-table"></i>
+                Reportes generales de centralita
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">Fecha inicio</label>
+                            <input type="date" name="" id="" class="form-control">
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">Fecha fin </label>
+                            <input type="date" name="" id="" class="form-control">
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">Origen de llamada</label>
+                            <select multiple name="source" id="" class="form-control select2" >
+                                <option value="">Jaja</option>
+                                <option value="">lol</option>
+                                <option value="">XD</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">Destino de llamada</label>
+                            <select multiple name="source" id="" class="form-control select2" >
+                                <option value="">tonto</option>
+                                <option value="">el</option>
+                                <option value="">que</option>
+                                <option value="">lo</option>
+                                <option value="">lea</option>
+                            </select>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">Hora inicio</label>
+                            <input type="time" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">Hora fin </label>
+                            <input type="time" name="" id="" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-info mx-auto text-center">Filtro <i class="fas fa-filter"></i></button>
+                </div>
+
+                <hr>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-phone"></i> Resumen general de las llamadas
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2" style="text-align: center;">
+                                <div class="form-group">Total de llamadas</div>
+                                <div class="form-group" style="font-size: 45px;">X</div>
+                            </div>
+                            <div class="col-lg-2 col-md-2" style="text-align: center;">
+                                <div class="form-group">Llamadas entrantes</div>
+                                <div class="form-group" style="font-size: 45px;">X</div>
+                            </div>
+                            <div class="col-lg-2 col-md-2" style="text-align: center;">
+                                <div class="form-group">Llamadas salientes</div>
+                                <div class="form-group" style="font-size: 45px;">X</div>
+                            </div>
+                            <div class="col-lg-2 col-md-2" style="text-align: center;">
+                                <div class="form-group">Duración media </div>
+                                <div class="form-group" style="font-size: 45px;">X</div>
+                            </div>
+                            <div class="col-lg-2 col-md-2" style="text-align: center;">
+                                <div class="form-group">Llamada más larga</div>
+                                <div class="form-group" style="font-size: 45px;">X</div>
+                            </div>
+                            <div class="col-lg-2 col-md-2" style="text-align: center;">
+                                <div class="form-group">Llamada más corta</div>
+                                <div class="form-group" style="font-size: 45px;">X</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-stripped" id="cdr-table" table-align="center">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Detalle</th>
+                            <th>Destino</th>
+                            <th>Sentido</th>
+                            <th>Duración</th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr class="text-center">
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+
+                        <tr class="text-center">
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function(){
+
+            $("#cdr-table").DataTable();
+
+            $(".select2").select2();
+        });
+
+    </script>
+    
+</body >
+</html>
